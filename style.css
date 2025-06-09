@@ -1,0 +1,139 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    color: #333;
+    font-size: 18px; /* Increased base font size */
+  }
+  
+  header {
+    background: #222;
+    color: #fff;
+    padding: 1em 0;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1em;
+  }
+  
+  .logo {
+    font-size: 1.8em;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1em;
+  }
+  
+  .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1em;
+  }
+  
+  .nav-links a.active,
+  .nav-links a:hover {
+    text-decoration: underline;
+  }
+  
+  main {
+    max-width: 1000px;
+    margin: 2em auto;
+    padding: 0 1em;
+  }
+  
+  .intro, .about, .projects, .contact {
+    background: white;
+    padding: 2em;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-bottom: 2em;
+    font-size: 1.1em; /* Larger font in main content */
+  }
+  
+  .project {
+    margin-bottom: 2em;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 1em;
+    background: #222;
+    color: white;
+    font-size: 1em;
+  }
+  
+  ul {
+    padding-left: 20px;
+  }
+  
+  h1, h2, h3 {
+    color: #222;
+    font-size: 1.5em;
+  }
+  
+  /* Skill grid */
+  .skills-section {
+    margin-top: 2em;
+  }
+  
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5em;
+  }
+  
+  .skill {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    background: #fff;
+    padding: 0.8em 1em;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    font-size: 1em;
+  }
+  
+  .skill img {
+    width: 32px;
+    height: 32px;
+  }
+  
+  /* Contact grid */
+  .contact-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    padding: 1em 0;
+  }
+  
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+    background: #fff;
+    padding: 1em 1.4em;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    min-width: 250px;
+    font-size: 1.1em;
+  }
+  
+  .contact-item img {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .contact-item a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1em;
+  }
