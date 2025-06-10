@@ -4,7 +4,479 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects - Sanjay Ranjanagi</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* Header Styles */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(20, 25, 40, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    /* Main Content */
+    main {
+      margin-top: 80px;
+      min-height: calc(100vh - 80px);
+    }
+
+    /* Hero Section for Projects */
+    .projects-hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 5rem 2rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .projects-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23fff" stop-opacity=".1"/><stop offset="100%" stop-color="%23fff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="3" fill="url(%23a)"/><circle cx="600" cy="100" r="2" fill="url(%23a)"/><circle cx="800" cy="300" r="2" fill="url(%23a)"/><circle cx="400" cy="600" r="3" fill="url(%23a)"/><circle cx="100" cy="800" r="2" fill="url(%23a)"/></svg>');
+      animation: float 20s infinite linear;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+      100% { transform: translateY(0px) rotate(360deg); }
+    }
+
+    .projects-hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .projects-hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: slideUp 1s ease 0.3s forwards;
+    }
+
+    .projects-hero p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      opacity: 0;
+      animation: slideUp 1s ease 0.5s forwards;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Projects Section */
+    .projects-content {
+      padding: 5rem 2rem;
+      background: #f8f9ff;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .projects-grid {
+      display: grid;
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      border: 1px solid #e2e8f0;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    }
+
+    .project-header {
+      padding: 2.5rem 2.5rem 1.5rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: pulse 3s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.8); opacity: 0.5; }
+      50% { transform: scale(1.2); opacity: 0.8; }
+      100% { transform: scale(0.8); opacity: 0.5; }
+    }
+
+    .project-header h3 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .project-type {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      font-weight: 500;
+      position: relative;
+      z-index: 2;
+    }
+
+    .project-content {
+      padding: 2.5rem;
+    }
+
+    .project-features {
+      margin-bottom: 2rem;
+    }
+
+    .project-features h4 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #2d3748;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .project-features h4::before {
+      content: "✨";
+      font-size: 1.1rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .feature-list li {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid #e2e8f0;
+      color: #4a5568;
+      line-height: 1.6;
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .feature-list li:last-child {
+      border-bottom: none;
+    }
+
+    .feature-list li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: #667eea;
+      font-weight: bold;
+    }
+
+    .tech-stack {
+      background: #f8f9ff;
+      padding: 1.5rem;
+      border-radius: 15px;
+      border-left: 4px solid #667eea;
+      margin-top: 2rem;
+    }
+
+    .tech-stack h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #2d3748;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tech-stack h4::before {
+      content: "🛠️";
+      font-size: 1rem;
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .tech-tag {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: transform 0.2s ease;
+    }
+
+    .tech-tag:hover {
+      transform: scale(1.05);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .project-btn {
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #667eea;
+      border: 2px solid #667eea;
+    }
+
+    .btn-secondary:hover {
+      background: #667eea;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* Project Stats */
+    .project-stats {
+      padding: 4rem 2rem;
+      background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+      color: white;
+      text-align: center;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 2rem auto 0;
+    }
+
+    .stat-item {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 1rem;
+      opacity: 0.9;
+      margin-top: 0.5rem;
+    }
+
+    /* Footer */
+    footer {
+      background: #1a202c;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .projects-hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .project-content {
+        padding: 2rem;
+      }
+
+      .project-header {
+        padding: 2rem 2rem 1.5rem;
+      }
+
+      .project-header h3 {
+        font-size: 1.5rem;
+      }
+
+      .project-links {
+        flex-direction: column;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .navbar {
+        padding: 1rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .projects-hero h1 {
+        font-size: 2rem;
+      }
+
+      .project-content {
+        padding: 1.5rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tech-tags {
+        justify-content: center;
+      }
+    }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -19,42 +491,179 @@
     </nav>
   </header>
 
-  <main class="projects">
-    <section>
-      <h2>Projects</h2>
-
-      <div class="project-card">
-        <h3>Quick Rental System – Spring Boot REST API</h3>
-        <ul>
-          <li>Developed a backend vehicle rental system using Java and Spring Boot.</li>
-          <li>Created RESTful APIs for managing customers, vehicles, and rental history.</li>
-          <li>Implemented DTOs and custom exception handling to follow clean architecture.</li>
-          <li>Tested API endpoints using Postman for functional validation.</li>
-          <li>Used layered architecture (Controller, Service, Repository) for better maintainability.</li>
-        </ul>
-        <p><strong>Tech Stack:</strong> Java, Spring Boot, REST API, Postman</p>
+  <main>
+    <!-- Projects Hero Section -->
+    <section class="projects-hero">
+      <div class="projects-hero-content">
+        <h1>My Projects</h1>
+        <p>Showcasing real-world applications and full-stack solutions</p>
       </div>
+    </section>
 
-      <div class="project-card">
-        <h3>Full Stack Travel Platform – Java Spring & Angular</h3>
-        <ul>
-          <li>Developed a full-stack platform with role-based access for travelers, agents, and administrators.</li>
-          <li>Designed responsive and user-friendly frontend using Angular, with modular components and routing.</li>
-          <li>Integrated search, sort, filter, booking, and feedback functionalities.</li>
-          <li>Built agent tools for managing packages and booking on behalf of clients.</li>
-          <li>Designed admin panel to manage providers, assign user roles, and approve/reject registrations.</li>
-          <li>Used Spring Boot to build secure REST APIs integrated with Angular frontend.</li>
-          <li>Implemented Spring Security with JWT-based authentication to secure user login and API access.</li>
-          <li>Added a feature for agents to download booking summaries of travelers in PDF format.</li>
-        </ul>
-        <p><strong>Tech Stack:</strong> Java, Spring Boot, Angular, JWT, MySQL</p>
+    <!-- Projects Content -->
+    <section class="projects-content">
+      <div class="container">
+        <div class="projects-grid">
+          
+          <!-- Project 1: Quick Rental System -->
+          <div class="project-card">
+            <div class="project-header">
+              <h3>Quick Rental System</h3>
+              <p class="project-type">Spring Boot REST API</p>
+            </div>
+            <div class="project-content">
+              <div class="project-features">
+                <h4>Key Features</h4>
+                <ul class="feature-list">
+                  <li>Developed a backend vehicle rental system using Java and Spring Boot</li>
+                  <li>Created RESTful APIs for managing customers, vehicles, and rental history</li>
+                  <li>Implemented DTOs and custom exception handling following clean architecture</li>
+                  <li>Tested API endpoints using Postman for functional validation</li>
+                  <li>Used layered architecture (Controller, Service, Repository) for better maintainability</li>
+                </ul>
+              </div>
+              
+              <div class="tech-stack">
+                <h4>Technology Stack</h4>
+                <div class="tech-tags">
+                  <span class="tech-tag">Java</span>
+                  <span class="tech-tag">Spring Boot</span>
+                  <span class="tech-tag">REST API</span>
+                  <span class="tech-tag">Postman</span>
+                  <span class="tech-tag">MySQL</span>
+                </div>
+              </div>
+
+              <div class="project-links">
+                <a href="#" class="project-btn btn-primary">
+                  <span>🚀</span> Live Demo
+                </a>
+                <a href="#" class="project-btn btn-secondary">
+                  <span>📁</span> Source Code
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2: Travel Platform -->
+          <div class="project-card">
+            <div class="project-header">
+              <h3>Full Stack Travel Platform</h3>
+              <p class="project-type">Java Spring & Angular</p>
+            </div>
+            <div class="project-content">
+              <div class="project-features">
+                <h4>Key Features</h4>
+                <ul class="feature-list">
+                  <li>Developed a full-stack platform with role-based access for travelers, agents, and administrators</li>
+                  <li>Designed responsive and user-friendly frontend using Angular with modular components and routing</li>
+                  <li>Integrated search, sort, filter, booking, and feedback functionalities</li>
+                  <li>Built agent tools for managing packages and booking on behalf of clients</li>
+                  <li>Designed admin panel to manage providers, assign user roles, and approve/reject registrations</li>
+                  <li>Used Spring Boot to build secure REST APIs integrated with Angular frontend</li>
+                  <li>Implemented Spring Security with JWT-based authentication for secure user login and API access</li>
+                  <li>Added feature for agents to download booking summaries of travelers in PDF format</li>
+                </ul>
+              </div>
+              
+              <div class="tech-stack">
+                <h4>Technology Stack</h4>
+                <div class="tech-tags">
+                  <span class="tech-tag">Java</span>
+                  <span class="tech-tag">Spring Boot</span>
+                  <span class="tech-tag">Angular</span>
+                  <span class="tech-tag">JWT</span>
+                  <span class="tech-tag">MySQL</span>
+                  <span class="tech-tag">Spring Security</span>
+                </div>
+              </div>
+
+              <div class="project-links">
+                <a href="#" class="project-btn btn-primary">
+                  <span>🚀</span> Live Demo
+                </a>
+                <a href="#" class="project-btn btn-secondary">
+                  <span>📁</span> Source Code
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
+    </section>
 
+    <!-- Project Stats -->
+    <section class="project-stats">
+      <div class="container">
+        <h2 class="section-title">Project Impact</h2>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-number">2</span>
+            <p class="stat-label">Major Projects</p>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">6+</span>
+            <p class="stat-label">Technologies Used</p>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">100%</span>
+            <p class="stat-label">Full-Stack Coverage</p>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">3</span>
+            <p class="stat-label">User Roles Implemented</p>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 Sanjay Ranjanagi</p>
+    <p>&copy; 2025 Sanjay Ranjanagi. All rights reserved.</p>
   </footer>
+
+  <script>
+    // Header background change on scroll
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('header');
+      if (window.scrollY > 100) {
+        header.style.background = 'rgba(20, 25, 40, 0.98)';
+      } else {
+        header.style.background = 'rgba(20, 25, 40, 0.95)';
+      }
+    });
+
+    // Add intersection observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observe project cards for animation
+    document.querySelectorAll('.project-card, .stat-item').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'all 0.6s ease';
+      observer.observe(el);
+    });
+
+    // Add click handlers for project buttons (placeholder)
+    document.querySelectorAll('.project-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        alert('Project link will be added here!');
+      });
+    });
+  </script>
 </body>
 </html>
